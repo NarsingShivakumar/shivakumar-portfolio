@@ -65,28 +65,28 @@ function IndiaTime() {
     const timer = window.setInterval(() => setNow(new Date()), 30000);
     return () => window.clearInterval(timer);
   }, []);
-  return <span className="kushi-time"><Clock3 size={13}/> India time: {new Intl.DateTimeFormat('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true, timeZone: 'Asia/Kolkata' }).format(now)}</span>;
+  return <span className="kushi-time"><Clock3 size={13} /> India time: {new Intl.DateTimeFormat('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true, timeZone: 'Asia/Kolkata' }).format(now)}</span>;
 }
 
 function KushiArt() {
   return <svg className="kushi-art" width="94" height="94" viewBox="0 0 120 120" fill="none" role="img" aria-label="Kushi, a friendly green walking robot guide">
-    <ellipse cx="61" cy="112" rx="34" ry="5" fill="#19382F" opacity=".15" className="kushi-shadow"/>
-    <g className="kushi-antenna"><path d="M59 31V19" stroke="#175C40" strokeWidth="4" strokeLinecap="round"/><circle cx="59" cy="13" r="7" fill="#FFCE5A" stroke="#1F6B4A" strokeWidth="3"/></g>
-    <path d="M26 51L13 43Q9 41 11 36Q13 32 18 34L33 39" fill="#49BE83" stroke="#1D6C4A" strokeWidth="3" strokeLinecap="round"/>
-    <path d="M94 51L107 43Q111 41 109 36Q107 32 102 34L87 39" fill="#49BE83" stroke="#1D6C4A" strokeWidth="3" strokeLinecap="round"/>
-    <g className="kushi-foot kushi-foot-left"><rect x="34" y="96" width="15" height="17" rx="7" fill="#174C35"/><rect x="28" y="106" width="23" height="9" rx="4" fill="#225D43"/></g>
-    <g className="kushi-foot kushi-foot-right"><rect x="72" y="96" width="15" height="17" rx="7" fill="#174C35"/><rect x="69" y="106" width="23" height="9" rx="4" fill="#225D43"/></g>
+    <ellipse cx="61" cy="112" rx="34" ry="5" fill="#19382F" opacity=".15" className="kushi-shadow" />
+    <g className="kushi-antenna"><path d="M59 31V19" stroke="#175C40" strokeWidth="4" strokeLinecap="round" /><circle cx="59" cy="13" r="7" fill="#FFCE5A" stroke="#1F6B4A" strokeWidth="3" /></g>
+    <path d="M26 51L13 43Q9 41 11 36Q13 32 18 34L33 39" fill="#49BE83" stroke="#1D6C4A" strokeWidth="3" strokeLinecap="round" />
+    <path d="M94 51L107 43Q111 41 109 36Q107 32 102 34L87 39" fill="#49BE83" stroke="#1D6C4A" strokeWidth="3" strokeLinecap="round" />
+    <g className="kushi-foot kushi-foot-left"><rect x="34" y="96" width="15" height="17" rx="7" fill="#174C35" /><rect x="28" y="106" width="23" height="9" rx="4" fill="#225D43" /></g>
+    <g className="kushi-foot kushi-foot-right"><rect x="72" y="96" width="15" height="17" rx="7" fill="#174C35" /><rect x="69" y="106" width="23" height="9" rx="4" fill="#225D43" /></g>
     <g className="kushi-robot-body">
-      <rect x="20" y="29" width="80" height="78" rx="34" fill="#1F6B4A" stroke="#174C35" strokeWidth="3"/>
-      <path d="M31 53Q36 35 61 33Q81 35 91 54Q74 47 60 49Q43 49 31 53Z" fill="#58D99A" opacity=".5"/>
-      <rect x="28" y="42" width="64" height="48" rx="23" fill="#59D698"/>
-      <ellipse cx="45" cy="61" rx="10" ry="12" fill="white"/><ellipse cx="75" cy="61" rx="10" ry="12" fill="white"/>
-      <circle cx="47" cy="63" r="5.4" fill="#10271B" className="kushi-eye"/><circle cx="77" cy="63" r="5.4" fill="#10271B" className="kushi-eye"/>
-      <circle cx="49" cy="61" r="2" fill="white"/><circle cx="79" cy="61" r="2" fill="white"/>
-      <path d="M52 77Q60 84 68 77" stroke="#17523A" strokeWidth="3.6" strokeLinecap="round"/>
-      <circle cx="34" cy="76" r="4" fill="#FFA0B1" opacity=".75"/><circle cx="86" cy="76" r="4" fill="#FFA0B1" opacity=".75"/>
-      <path d="M32 84L22 91M88 84L98 91" stroke="#174C35" strokeWidth="7" strokeLinecap="round"/>
-      <path d="M94 97Q112 85 104 67" stroke="#1F6B4A" strokeWidth="6" strokeLinecap="round" className="kushi-tail"/>
+      <rect x="20" y="29" width="80" height="78" rx="34" fill="#1F6B4A" stroke="#174C35" strokeWidth="3" />
+      <path d="M31 53Q36 35 61 33Q81 35 91 54Q74 47 60 49Q43 49 31 53Z" fill="#58D99A" opacity=".5" />
+      <rect x="28" y="42" width="64" height="48" rx="23" fill="#59D698" />
+      <ellipse cx="45" cy="61" rx="10" ry="12" fill="white" /><ellipse cx="75" cy="61" rx="10" ry="12" fill="white" />
+      <circle cx="47" cy="63" r="5.4" fill="#10271B" className="kushi-eye" /><circle cx="77" cy="63" r="5.4" fill="#10271B" className="kushi-eye" />
+      <circle cx="49" cy="61" r="2" fill="white" /><circle cx="79" cy="61" r="2" fill="white" />
+      <path d="M52 77Q60 84 68 77" stroke="#17523A" strokeWidth="3.6" strokeLinecap="round" />
+      <circle cx="34" cy="76" r="4" fill="#FFA0B1" opacity=".75" /><circle cx="86" cy="76" r="4" fill="#FFA0B1" opacity=".75" />
+      <path d="M32 84L22 91M88 84L98 91" stroke="#174C35" strokeWidth="7" strokeLinecap="round" />
+      <path d="M94 97Q112 85 104 67" stroke="#1F6B4A" strokeWidth="6" strokeLinecap="round" className="kushi-tail" />
     </g>
   </svg>;
 }
@@ -280,31 +280,31 @@ export default function KushiGuide() {
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
   };
 
-  if (hidden) return <button className="kushi-restore" onClick={() => { setHidden(false); pauseUntilRef.current = performance.now() + 800; }} type="button" aria-label="Show Kushi walking guide"><RotateCcw size={15}/> Meet Kushi</button>;
+  if (hidden) return <button className="kushi-restore" onClick={() => { setHidden(false); pauseUntilRef.current = performance.now() + 800; }} type="button" aria-label="Show Kushi walking guide"><RotateCcw size={15} /> Meet Kushi</button>;
 
   return <aside ref={widgetRef} className={`kushi-widget ${showTour ? 'kushi-touring' : ''} ${walking && !dragging ? 'kushi-walking' : ''} ${dragging ? 'kushi-dragging' : ''} ${prefersReducedMotion ? 'kushi-still' : ''}`} aria-label="Kushi, interactive walking portfolio guide">
     {showTour && active && <div className="kushi-bubble" role="region" aria-label={`Tour stop ${index + 1}: ${active.label}`}>
-      <div className="kushi-bubble-top"><span><MapPin size={13}/> {String(index + 1).padStart(2, '0')} / {String(stops.length).padStart(2, '0')} · {active.label}</span><button type="button" className="kushi-tour-close" aria-label="Close Kushi tour" onClick={() => { setIndex(-1); pauseUntilRef.current = performance.now() + DRAG_RESUME_MS; }}><X size={16}/></button></div>
-      <div className="kushi-bubble-meter"><i style={{ width: `${(index + 1) / stops.length * 100}%` }}/></div>
+      <div className="kushi-bubble-top"><span><MapPin size={13} /> {String(index + 1).padStart(2, '0')} / {String(stops.length).padStart(2, '0')} · {active.label}</span><button type="button" className="kushi-tour-close" aria-label="Close Kushi tour" onClick={() => { setIndex(-1); pauseUntilRef.current = performance.now() + DRAG_RESUME_MS; }}><X size={16} /></button></div>
+      <div className="kushi-bubble-meter"><i style={{ width: `${(index + 1) / stops.length * 100}%` }} /></div>
       <div className="kushi-bubble-content">
         <h3>{active.heading}</h3><p>{active.text}</p>
-        {index === 0 && <IndiaTime/>}
+        {index === 0 && <IndiaTime />}
         {index === stops.length - 1 && <a className="kushi-email" href="mailto:narsingshivakumar10@gmail.com">narsingshivakumar10@gmail.com</a>}
       </div>
       <div className="kushi-bubble-controls">
-        <button type="button" disabled={index === 0} onClick={() => go(index - 1)}><ArrowLeft size={15}/> Back</button>
-        <button type="button" className="kushi-next" onClick={() => go(index + 1)}>{index === stops.length - 1 ? <>Finish <Check size={16}/></> : <>Next stop <ArrowRight size={16}/></>}</button>
+        <button type="button" disabled={index === 0} onClick={() => go(index - 1)}><ArrowLeft size={15} /> Back</button>
+        <button type="button" className="kushi-next" onClick={() => go(index + 1)}>{index === stops.length - 1 ? <>Finish <Check size={16} /></> : <>Next stop <ArrowRight size={16} /></>}</button>
       </div>
       <span className="kushi-shortcut">Tip: drag Kushi, use ← → arrows, Esc to exit</span>
     </div>}
-    {!showTour && <div className="kushi-greeting" aria-hidden="true">I’m Kushi! Drag me <span>↗</span></div>}
+    {!showTour && <div className="kushi-greeting" aria-hidden="true">I’m Kushi!<span>↗</span></div>}
     <div className="kushi-person">
       <div className={`kushi-facing ${facingLeft ? 'kushi-face-left' : ''}`}>
         <button type="button" className="kushi-body" aria-label={showTour ? `Kushi: ${active?.label}. Next stop` : 'Kushi walking guide. Start guided tour'} title="Kushi — click for a tour, drag to move around" onClick={() => { if (ignoreClickRef.current) return; if (!showTour) go(0); else go(index + 1); }} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp} onPointerCancel={onPointerUp} onPointerEnter={() => { hoverRef.current = true; }} onPointerLeave={() => { hoverRef.current = false; }}>
-          <KushiArt/>
+          <KushiArt />
         </button>
       </div>
-      <button type="button" className="kushi-hide" aria-label="Hide Kushi" title="Hide Kushi" onClick={() => { setHidden(true); setIndex(-1); }}><EyeOff size={15}/></button>
+      <button type="button" className="kushi-hide" aria-label="Hide Kushi" title="Hide Kushi" onClick={() => { setHidden(true); setIndex(-1); }}><EyeOff size={15} /></button>
     </div>
   </aside>;
 }
