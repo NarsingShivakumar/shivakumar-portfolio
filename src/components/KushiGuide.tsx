@@ -24,12 +24,13 @@ type Point = { x: number; y: number };
 type Drag = { pointerId: number; startX: number; startY: number; x: number; y: number; moved: boolean };
 
 function bounds() {
-  const mobile = window.innerWidth <= 580;
+  const mobile = window.innerWidth <= 660;
   return {
     minX: PADDING,
-    minY: PADDING,
-    maxX: Math.max(PADDING, window.innerWidth - (mobile ? 84 : 104) - PADDING),
-    maxY: Math.max(PADDING, window.innerHeight - (mobile ? 92 : 113) - PADDING),
+    // Keep the mobile guide clear of the fixed navigation at the top.
+    minY: mobile ? Math.min(100, Math.max(PADDING, window.innerHeight * 0.16)) : PADDING,
+    maxX: Math.max(PADDING, window.innerWidth - (mobile ? 70 : 104) - PADDING),
+    maxY: Math.max(PADDING, window.innerHeight - (mobile ? 94 : 113) - PADDING),
   };
 }
 
@@ -129,13 +130,13 @@ export default function KushiGuide() {
     node.dataset.side = x < window.innerWidth / 2 ? 'right' : 'left';
     const speech = node.querySelector<HTMLElement>('.kushi-bubble');
     if (speech) {
-      const mascotWidth = window.innerWidth <= 580 ? 82 : 100;
+      const mascotWidth = window.innerWidth <= 660 ? 68 : 100;
       const bubbleWidth = Math.min(speech.offsetWidth, window.innerWidth - 28);
       const preferredLeft = x < window.innerWidth / 2 ? x : x + mascotWidth - bubbleWidth;
       const bubbleLeft = Math.max(14, Math.min(window.innerWidth - bubbleWidth - 14, preferredLeft));
       const bubbleHeight = Math.min(speech.offsetHeight, window.innerHeight - 26);
       let preferredTop = y - bubbleHeight - 12;
-      if (preferredTop < 12) preferredTop = y + (window.innerWidth <= 580 ? 89 : 108);
+      if (preferredTop < 12) preferredTop = y + (window.innerWidth <= 660 ? 76 : 108);
       const bubbleTop = Math.max(12, Math.min(window.innerHeight - bubbleHeight - 12, preferredTop));
       node.style.setProperty('--kushi-bubble-left', `${bubbleLeft - x}px`);
       node.style.setProperty('--kushi-bubble-top', `${bubbleTop - y}px`);
@@ -162,6 +163,16 @@ export default function KushiGuide() {
     parkAtCorner();
     document.getElementById(stops[target].id)?.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
   }, [parkAtCorner, prefersReducedMotion]);
+
+  // On touch devices, stop roaming briefly when the reader scrolls the page.
+  useEffect(() => {
+    const onPageScroll = () => {
+      pauseUntilRef.current = performance.now() + 1100;
+      changeWalking(false);
+    };
+    window.addEventListener('scroll', onPageScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onPageScroll);
+  }, [changeWalking]);
 
   useEffect(() => {
     const query = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -273,18 +284,20 @@ export default function KushiGuide() {
 
   return <aside ref={widgetRef} className={`kushi-widget ${showTour ? 'kushi-touring' : ''} ${walking && !dragging ? 'kushi-walking' : ''} ${dragging ? 'kushi-dragging' : ''} ${prefersReducedMotion ? 'kushi-still' : ''}`} aria-label="Kushi, interactive walking portfolio guide">
     {showTour && active && <div className="kushi-bubble" role="region" aria-label={`Tour stop ${index + 1}: ${active.label}`}>
-      <div className="kushi-bubble-top"><span><MapPin size={13}/> {String(index + 1).padStart(2, '0')} / {String(stops.length).padStart(2, '0')} · {active.label}</span><button type="button" aria-label="Close tour" onClick={() => { setIndex(-1); pauseUntilRef.current = performance.now() + DRAG_RESUME_MS; }}><X size={16}/></button></div>
+      <div className="kushi-bubble-top"><span><MapPin size={13}/> {String(index + 1).padStart(2, '0')} / {String(stops.length).padStart(2, '0')} · {active.label}</span><button type="button" className="kushi-tour-close" aria-label="Close Kushi tour" onClick={() => { setIndex(-1); pauseUntilRef.current = performance.now() + DRAG_RESUME_MS; }}><X size={16}/></button></div>
       <div className="kushi-bubble-meter"><i style={{ width: `${(index + 1) / stops.length * 100}%` }}/></div>
-      <h3>{active.heading}</h3><p>{active.text}</p>
-      {index === 0 && <IndiaTime/>}
-      {index === stops.length - 1 && <a className="kushi-email" href="mailto:narsingshivakumar10@gmail.com">narsingshivakumar10@gmail.com</a>}
+      <div className="kushi-bubble-content">
+        <h3>{active.heading}</h3><p>{active.text}</p>
+        {index === 0 && <IndiaTime/>}
+        {index === stops.length - 1 && <a className="kushi-email" href="mailto:narsingshivakumar10@gmail.com">narsingshivakumar10@gmail.com</a>}
+      </div>
       <div className="kushi-bubble-controls">
         <button type="button" disabled={index === 0} onClick={() => go(index - 1)}><ArrowLeft size={15}/> Back</button>
         <button type="button" className="kushi-next" onClick={() => go(index + 1)}>{index === stops.length - 1 ? <>Finish <Check size={16}/></> : <>Next stop <ArrowRight size={16}/></>}</button>
       </div>
       <span className="kushi-shortcut">Tip: drag Kushi, use ← → arrows, Esc to exit</span>
     </div>}
-    {!showTour && <div className="kushi-greeting" aria-hidden="true">I’m Kushi!<span>↗</span></div>}
+    {!showTour && <div className="kushi-greeting" aria-hidden="true">I’m Kushi! Drag me <span>↗</span></div>}
     <div className="kushi-person">
       <div className={`kushi-facing ${facingLeft ? 'kushi-face-left' : ''}`}>
         <button type="button" className="kushi-body" aria-label={showTour ? `Kushi: ${active?.label}. Next stop` : 'Kushi walking guide. Start guided tour'} title="Kushi — click for a tour, drag to move around" onClick={() => { if (ignoreClickRef.current) return; if (!showTour) go(0); else go(index + 1); }} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp} onPointerCancel={onPointerUp} onPointerEnter={() => { hoverRef.current = true; }} onPointerLeave={() => { hoverRef.current = false; }}>
