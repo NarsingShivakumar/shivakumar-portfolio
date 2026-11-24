@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+<rect width="1200" height="630" fill="#f3f0e7"/>
+<circle cx="1060" cy="110" r="300" fill="#c6f66c"/>
+<circle cx="1040" cy="530" r="240" fill="#add9d3"/>
+<text x="80" y="118" font-size="36" font-family="Arial,sans-serif" fill="#172323">SN. / PORTFOLIO 2026</text>
+<text x="80" y="300" font-size="86" font-family="Arial,sans-serif" font-weight="bold" fill="#172323">Shivakumar</text>
+<text x="80" y="403" font-size="86" font-family="Arial,sans-serif" font-weight="bold" fill="#172323">Narsing.</text>
+<text x="80" y="500" font-size="32" font-family="Arial,sans-serif" fill="#465453">React Native · BLE · ESP32 · IoT · Native SDKs</text>
+</svg>
